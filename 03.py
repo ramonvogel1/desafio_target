@@ -9,18 +9,15 @@
 #b) Podem existir dias sem faturamento, como nos finais de semana e feriados. Estes dias devem ser ignorados no cálculo da média;
 
 import json
-with open('03_mes09.json', 'r') as file:
+with open('dados.json', 'r') as file:
     dados = json.load(file)
 
-valoresList = [dicionario['faturamento'] for dicionario in dados]
+valoresList = [dicionario['valor'] for dicionario in dados]
 valoresList.sort()
-print(valoresList)
 
 for values in valoresList[:]:
-    if values == 0 or values < 1000:
-        valoresList.remove(0)
-
-print(valoresList)
+    if values == 0:
+        valoresList.pop(0)
 
 minimo = valoresList[0]
 maximo = valoresList[-1:]
